@@ -7,6 +7,7 @@ import Home from "./components/Pages/Home/Home";
 import AuthForm from "./components/Auth/AuthForm";
 import MailBox from "./components/Pages/Mail/MailBox";
 import PrivateRoute from "./components/Pages/PrivateRoute";
+import Inbox from "./components/Pages/Inbox/Inbox";
 
 const router = createBrowserRouter([
   { 
@@ -15,7 +16,8 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <PrivateRoute><Home/></PrivateRoute> },
       { path: "/authform", element: <AuthForm/> },
-      { path: "/mail", element: <MailBox/> },
+      { path: "/sendmail", element: <PrivateRoute><MailBox/></PrivateRoute> },
+      { path: "/inbox", element: <PrivateRoute><Inbox/></PrivateRoute> },
       { path: "*", element: <AuthForm/> },
     ], 
   },

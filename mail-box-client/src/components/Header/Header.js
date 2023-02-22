@@ -18,7 +18,8 @@ const Header = () => {
           <Navbar.Brand className="mx-4 text-white">Mail Box App</Navbar.Brand>
           <Nav className="me-auto align-items-center">
             <NavLink to="/" className="mx-4 text-white">Home</NavLink>
-            <NavLink to="/mail" className="mx-4 text-white">Mail Box</NavLink>
+            {/* <NavLink to="/sendmail" className="mx-4 text-white">Mail Box</NavLink> */}
+            <NavLink to="/inbox" className="mx-4 text-white">Inbox</NavLink>
             {!IdToken ? (
                 <NavLink to="/authform">
                   <button className="btn mx-4 text-white btn-outline-secondary">Login</button>
