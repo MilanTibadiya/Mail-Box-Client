@@ -3,8 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
 import Header from "./components/Header/Header";
-import Home from "./components/Pages/Home";
+import Home from "./components/Pages/Home/Home";
 import AuthForm from "./components/Auth/AuthForm";
+import MailBox from "./components/Pages/Mail/MailBox";
 import PrivateRoute from "./components/Pages/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <PrivateRoute><Home/></PrivateRoute> },
       { path: "/authform", element: <AuthForm/> },
+      { path: "/mail", element: <MailBox/> },
       { path: "*", element: <AuthForm/> },
     ], 
   },

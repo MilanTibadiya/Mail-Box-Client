@@ -1,10 +1,13 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
+import { authAction } from "../../store/AuthSlicer";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AuthForm = () => {
+  const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const emailInputRef = useRef();
@@ -67,7 +70,8 @@ const AuthForm = () => {
     .then((data) => {  
       if(data){
       navigate('/') ;
-      localStorage.setItem("idToken" , data.idToken);
+      // localStorage.setItem("idToken" , data.idToken);
+      dispatch(authAction.login(data.idToken)) //not payload current
       toast('sucsess');
       }                       
     })
@@ -82,7 +86,7 @@ const AuthForm = () => {
         <h1 className="d-flex justify-content-center display-3 border-bottom p-2 border-1 border-dark">
           {isLogin ? "Login" : "Sign Up"}
         </h1>
-        <form onSubmit={submitHandler} className="form m-auto my-5 w-25 p-3 shadow-lg rounded-3">
+        <form className="form m-auto my-5 w-25 p-3 shadow-lg rounded-3">
           <div className=" form-floating mb-3">
             <input
               ref={emailInputRef}
@@ -119,7 +123,7 @@ const AuthForm = () => {
 
           {loading && <p>Sending request...</p> }
           
-          {!loading && <button
+          {!loading && <button onClick={submitHandler}
             type="submit"
             className=" btn btn-secondary"
           >{isLogin ? "Login" : "Create Account"}</button>}
