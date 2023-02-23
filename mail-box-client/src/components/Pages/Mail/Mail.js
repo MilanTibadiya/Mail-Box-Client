@@ -12,9 +12,9 @@ const Mail = () => {
     <>
       <h5 className="m-5">mail</h5>
       <div className="m-5">
-        <h2>Sended by : {mail.senderMail}</h2>
-        <p>subject : {mail.subject}</p>
-        <p className="p-2" style={{border: '2px solid blue', height: '222px'}}>{mail.mail}</p>
+        <h2>Sended by : {mail?.senderMail}</h2>
+        <p>subject : {mail?.subject}</p>
+        <p className="p-2" style={{border: '2px solid blue', height: '222px'}}>{mail?.mail}</p>
       </div>
     </>
   );
