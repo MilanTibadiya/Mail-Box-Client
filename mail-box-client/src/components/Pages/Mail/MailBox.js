@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
+
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from 'draft-js';
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { toast } from "react-toastify";
 
@@ -33,6 +35,7 @@ const MailBox = () => {
         senderMail: enteredEmail,
         subject: enteredSubject,
         mail: enteredEditor,
+        isReaded : false,
       }),
       headers: {
         'Content-Type':'application/json'
