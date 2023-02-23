@@ -32,7 +32,7 @@ const MailBox = () => {
     {
       method: 'POST',
       body: JSON.stringify({
-        senderMail: enteredEmail,
+        senderMail: myEmail,
         subject: enteredSubject,
         mail: enteredEditor,
         isReaded : false,

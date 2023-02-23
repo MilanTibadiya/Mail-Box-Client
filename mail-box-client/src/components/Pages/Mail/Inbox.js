@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mailAction } from "../../../store/MailSlicer";
 import { useNavigate } from "react-router-dom";
@@ -7,22 +7,20 @@ import { RxDotFilled } from 'react-icons/rx'
 import { IconName } from "react-icons/rx";
 
 const Inbox = () => {
-  let count = 0;
-  const [num, setNum] = useState(count)
   const navigate = useNavigate()
 
   const dispatch = useDispatch();
   const { allMails } = useSelector(state => state.mail);
-  console.log('slice', allMails)
+  // console.log('slice', allMails)
 
   const sum = allMails.map((x) => x.isReaded)
-console.log('count',sum)
 
+  let count = 0;
 sum.forEach(element => {
   if(element !== true){
     count++;
   }
-  console.log(count)
+  // console.log(count)
 });
 
   useEffect(() => {
@@ -86,7 +84,7 @@ sum.forEach(element => {
               </div>
               <div>
                 <b  className={email.isReaded?'fw-normal m-2' : 'fw-bold m-2'}>{email.subject}</b>
-                <span className=' fw-light px-2'>{email.mail}</span>
+                <span className=' fw-light px-2'> - {email.mail}</span>
               </div>
             </div>
           ))}
