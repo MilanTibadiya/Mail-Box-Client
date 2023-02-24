@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mailAction } from "../../../store/MailSlicer";
 import { useNavigate } from "react-router-dom";
+import useHttp from "../../../hooks/use-http";
 
 import { RxDotFilled } from 'react-icons/rx'
 import {AiFillDelete } from 'react-icons/ai'
@@ -28,7 +29,7 @@ sum.forEach(element => {
     const timeInt = setInterval(() => {
       getMails()
       // console.log('time out $ clear')
-    }, 3000)
+    }, 2000)
     return () => clearInterval(timeInt)
   }, [])
 

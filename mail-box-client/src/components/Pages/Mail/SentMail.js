@@ -14,7 +14,7 @@ const SentMail = () => {
     useEffect(() => {
       const timeInt = setInterval(() => {
         getMails()
-      }, 3000);
+      }, 2000);
       return () => clearInterval(timeInt)
       }, [])
     
