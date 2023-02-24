@@ -12,7 +12,10 @@ const SentMail = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+      const timeInt = setInterval(() => {
         getMails()
+      }, 3000);
+      return () => clearInterval(timeInt)
       }, [])
     
       const getMails = async () => {
@@ -36,9 +39,8 @@ const SentMail = () => {
         <button className=' btn border-primary m-3' onClick={()=>navigate('/inbox')}>Inbox</button>     
           <div className="mx-5">
             {sentmail?.map((email) => (
-              <div className='d-flex gap-3'>
+              <div  key={email.id} className='d-flex gap-3'>
               <div
-                key={email.id}
                 onClick={() => {  //navigate is not working because i am sending fetch req.
                   navigate(`/inbox/${email.id}`)
                 }}

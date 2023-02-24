@@ -44,7 +44,8 @@ const MailBox = () => {
       if(!res.ok){
         toast(res.error.message)
       }else{
-        console.log('success send, mail-box')
+        // console.log('success send, mail-box')
+        toast('Mail sended successfully')
       }
     })
 

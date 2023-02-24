@@ -25,7 +25,11 @@ sum.forEach(element => {
 });
 
   useEffect(() => {
-    getMails()
+    const timeInt = setInterval(() => {
+      getMails()
+      // console.log('time out $ clear')
+    }, 3000)
+    return () => clearInterval(timeInt)
   }, [])
 
   const getMails = async () => {
@@ -82,9 +86,8 @@ sum.forEach(element => {
        <div className="mx-5 mt-3 mb-2"><span>recieved  ||</span> <span>   Inbox : {count} Unread </span></div>
         <div className="mx-5">
           {allMails?.map((email) => (
-            <div className='d-flex gap-3'>
+            <div key={email.id} className='d-flex gap-3'>
             <div
-              key={email.id}
               onClick={() => {readHandler(email.id);
                 navigate(`/inbox/${email.id}`)
               }}
