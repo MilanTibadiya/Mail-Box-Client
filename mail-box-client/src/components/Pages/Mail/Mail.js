@@ -6,8 +6,10 @@ import { useParams } from "react-router-dom";
 const Mail = () => {
   const { id } = useParams(); //params.id
   const { allMails } = useSelector((state) => state.mail);
+  const { sentMails } = useSelector((state) => state.mail);
 
-  const mail = allMails.find((emai) => emai.id === id);
+  let mail = allMails.find((emai) => emai.id === id) || sentMails.find((emai) => emai.id === id);
+
   return (
     <>
       <h5 className="m-5">mail</h5>

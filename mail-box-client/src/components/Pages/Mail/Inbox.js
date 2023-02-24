@@ -74,13 +74,13 @@ sum.forEach(element => {
     getMails();
   }
   
-    return (
-        
+    return (  
         <>
       <h1 className="d-flex justify-content-center display-5 border-bottom p-2 border-1 border-dark">Inbox</h1>
-      <button className=' btn border-primary m-3' onClick={()=>navigate('/sendmail')}>COMPOESE</button>
-       <span>Inbox : {count} Unread </span>
-        <div className="m-5">
+      <button className=' btn border-primary m-3 mx-5' onClick={()=>navigate('/sendmail')}>COMPOESE</button>
+      <button className=' btn border-primary m-3' onClick={()=>navigate('/sent')}>SENT</button>     
+       <div className="mx-5 mt-3 mb-2"><span>recieved  ||</span> <span>   Inbox : {count} Unread </span></div>
+        <div className="mx-5">
           {allMails?.map((email) => (
             <div className='d-flex gap-3'>
             <div

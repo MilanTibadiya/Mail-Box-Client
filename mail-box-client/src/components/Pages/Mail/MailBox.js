@@ -48,6 +48,20 @@ const MailBox = () => {
       }
     })
 
+    fetch(`https://signup-and-authentication-default-rtdb.firebaseio.com/sent${myEmail.split('@')[0]}.json`,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        senderMail: enteredEmail,
+        subject: enteredSubject,
+        mail: enteredEditor,
+        isReaded : false,
+      }),
+      headers: {
+        'Content-Type':'application/json'
+      }
+    })
+
     emailRef.current.value = '';
     subjectRef.current.value = '';
     setEditorState('');

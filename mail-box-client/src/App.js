@@ -9,6 +9,7 @@ import MailBox from "./components/Pages/Mail/MailBox";
 import PrivateRoute from "./components/Pages/PrivateRoute";
 import Inbox from "./components/Pages/Mail/Inbox";
 import Mail from "./components/Pages/Mail/Mail";
+import SentMail from "./components/Pages/Mail/SentMail";
 
 const router = createBrowserRouter([
   { 
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/sendmail", element: <PrivateRoute><MailBox/></PrivateRoute> },
       { path: "/inbox", element: <PrivateRoute><Inbox/></PrivateRoute> },
       { path: "/inbox/:id", element: <PrivateRoute><Mail/></PrivateRoute> },
+      { path: "/sent", element: <PrivateRoute><SentMail/></PrivateRoute> },
       { path: "*", element: <AuthForm/> },
     ], 
   },
