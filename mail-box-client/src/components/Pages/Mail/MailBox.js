@@ -1,12 +1,16 @@
 import React, { useRef, useState } from "react";
+import useHttp from "../../../hooks/use-http";
+import { useNavigate } from "react-router-dom";
 
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from 'draft-js';
-
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { toast } from "react-toastify";
 
 const MailBox = () => {
+  const navigate = useNavigate();
+
+  const { sendRequest: sendTaskRequest  } = useHttp();
 
   const [editorState , setEditorState] = useState(()=> EditorState.createEmpty() )
   const emailRef = useRef('');
@@ -28,40 +32,40 @@ const MailBox = () => {
 
     // console.log(enteredEmail, enteredSubject, enteredEditor, editorState);
 
-    fetch(`https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${enteredEmail.split('@')[0]}.json`,
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        senderMail: myEmail,
-        subject: enteredSubject,
-        mail: enteredEditor,
-        isReaded : false,
-      }),
-      headers: {
-        'Content-Type':'application/json'
-      }
-    }).then((res) => {
-      if(!res.ok){
-        toast(res.error.message)
-      }else{
-        // console.log('success send, mail-box')
-        toast('Mail sended successfully')
-      }
-    })
+    const  transformTasks = () => {}
 
-    fetch(`https://signup-and-authentication-default-rtdb.firebaseio.com/sent${myEmail.split('@')[0]}.json`,
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        senderMail: enteredEmail,
-        subject: enteredSubject,
-        mail: enteredEditor,
-        isReaded : false,
-      }),
-      headers: {
-        'Content-Type':'application/json'
+    sendTaskRequest(
+      {
+        url: `https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${enteredEmail.split('@')[0]}.json`,
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body: {
+          senderMail: myEmail,
+          subject: enteredSubject,
+          mail: enteredEditor,
+          isReaded : false,
+        },
+      },
+      transformTasks
+    )
+
+    sendTaskRequest(
+      {
+        url: `https://signup-and-authentication-default-rtdb.firebaseio.com/sent${myEmail.split('@')[0]}.json`,
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body: {
+          senderMail: enteredEmail,
+          subject: enteredSubject,
+          mail: enteredEditor,
+          isReaded : false,
+        },
       }
-    })
+    )
 
     emailRef.current.value = '';
     subjectRef.current.value = '';
@@ -73,6 +77,8 @@ const MailBox = () => {
       <h1 className="d-flex justify-content-center display-5 border-bottom p-2 border-1 border-dark">
         Send Mail
       </h1>
+      <button className=' btn border-primary m-3 mx-5' onClick={()=>navigate('/inbox')}>Inbox</button>
+      <button className=' btn border-primary m-3' onClick={()=>navigate('/sent')}>SENT</button>
       <div style={{ margin: "11px 111px" }}>
         <label style={{ borderBottom: "1px solid black" }}>
           From: {myEmail}

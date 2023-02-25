@@ -6,9 +6,10 @@ import useHttp from "../../../hooks/use-http";
 
 import { RxDotFilled } from 'react-icons/rx'
 import {AiFillDelete } from 'react-icons/ai'
-import { IconName } from "react-icons/rx";
 
 const Inbox = () => {
+  const { sendRequest } = useHttp();
+
   const navigate = useNavigate()
 
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ sum.forEach(element => {
   useEffect(() => {
     const timeInt = setInterval(() => {
       getMails()
-      // console.log('time out $ clear')
+      // console.log('time out $ clear'
     }, 2000)
     return () => clearInterval(timeInt)
   }, [])
@@ -48,19 +49,23 @@ sum.forEach(element => {
     dispatch(mailAction.setMail(result))
   };
 
+
+
   const readHandler = async (id) => {
     const userEmail = localStorage.getItem('userEmail');
 
-    const res = await  fetch(`https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}/${id}.json`,
-    {
-      method: 'PATCH',
-      body: JSON.stringify({
-        isReaded : true,
-      }),
-      headers: {
-        'Content-Type':'application/json'
+    sendRequest(
+      {
+        url: `https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}/${id}.json`,
+        method: 'PATCH',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body: {
+          isReaded : true,
+        },
       }
-    })
+    )
     // console.log('sum', res)
     getMails();
   }
@@ -68,13 +73,14 @@ sum.forEach(element => {
   const deleteMail = async (id) => {
     const userEmail = localStorage.getItem('userEmail');
 
-    const res = await fetch(`https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}/${id}.json`,
-    {
-      method: 'DELETE',
-      headers: {
-        'Content-Type':'application/json'
+    sendRequest(
+      {
+        url: `https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}/${id}.json`,
+        method: 'DELETE',
+        headers: {
+          'Content-Type':'application/json'
+        },
       }
-    },
     )
     getMails();
   }

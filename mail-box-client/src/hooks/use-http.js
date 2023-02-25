@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useCallback } from "react";
+import { toast } from "react-toastify";
 
 const useHttp = () => {
   // const [data, setData] = useState(null);
@@ -8,11 +9,10 @@ const useHttp = () => {
   //     .then((res) => res.json())
   //     .then((data) => setData(data));
   // }, [url]);
-
   // return (data);
 
   //2nd part,
-  const sendRequest = useCallback(async (requestConfig, applyData) => {
+  const sendRequest = useCallback(async (requestConfig) => {          //2nd para applydata
 
     try {
       const response = await fetch(requestConfig.url, {
@@ -26,9 +26,9 @@ const useHttp = () => {
       }
 
       const data = await response.json();
-      applyData(data);
+      // applyData(data);
     } catch (err) {
-      alert(err.message || 'Something went wrong!');
+      toast(err.message || 'Something went wrong!');
     }
   }, []);
 
