@@ -30,14 +30,14 @@ sum.forEach(element => {
     const timeInt = setInterval(() => {
       getMails()
       // console.log('time out $ clear'
-    }, 2000)
+    }, 3000)
     return () => clearInterval(timeInt)
   }, [])
 
   const getMails = async () => {
     const userEmail = localStorage.getItem('userEmail');
 
-    const res = await  fetch(`https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}.json`);
+    const res = await  fetch(`https://mailbox-ba4ff-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}.json`);
     const data = await res.json();
     // console.log('get', data);
 
@@ -56,7 +56,7 @@ sum.forEach(element => {
 
     sendRequest(
       {
-        url: `https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}/${id}.json`,
+        url: `https://mailbox-ba4ff-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}/${id}.json`,
         method: 'PATCH',
         headers: {
           'Content-Type':'application/json'
@@ -75,7 +75,7 @@ sum.forEach(element => {
 
     sendRequest(
       {
-        url: `https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}/${id}.json`,
+        url: `https://mailbox-ba4ff-default-rtdb.firebaseio.com/inbox${userEmail.split('@')[0]}/${id}.json`,
         method: 'DELETE',
         headers: {
           'Content-Type':'application/json'

@@ -24,7 +24,7 @@ const SentMail = () => {
       const getMails = async () => {
         const userEmail = localStorage.getItem('userEmail');
     
-        const res = await  fetch(`https://signup-and-authentication-default-rtdb.firebaseio.com/sent${userEmail.split('@')[0]}.json`);
+        const res = await  fetch(`https://mailbox-ba4ff-default-rtdb.firebaseio.com/sent${userEmail.split('@')[0]}.json`);
         const data = await res.json();
         // console.log('sent', data);
     
@@ -40,7 +40,7 @@ const SentMail = () => {
     
         sendRequest(
           {
-            url: `https://signup-and-authentication-default-rtdb.firebaseio.com/sent${userEmail.split('@')[0]}/${id}.json`,
+            url: `https://mailbox-ba4ff-default-rtdb.firebaseio.com/sent${userEmail.split('@')[0]}/${id}.json`,
             method: 'DELETE',
             headers: {
               'Content-Type':'application/json'

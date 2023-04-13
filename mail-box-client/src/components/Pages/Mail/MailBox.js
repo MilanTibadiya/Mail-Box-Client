@@ -36,7 +36,7 @@ const MailBox = () => {
 
     sendTaskRequest(
       {
-        url: `https://signup-and-authentication-default-rtdb.firebaseio.com/inbox${enteredEmail.split('@')[0]}.json`,
+        url: `https://mailbox-ba4ff-default-rtdb.firebaseio.com/inbox${enteredEmail.split('@')[0]}.json`,
         method: 'POST',
         headers: {
           'Content-Type':'application/json'
@@ -53,7 +53,7 @@ const MailBox = () => {
 
     sendTaskRequest(
       {
-        url: `https://signup-and-authentication-default-rtdb.firebaseio.com/sent${myEmail.split('@')[0]}.json`,
+        url: `https://mailbox-ba4ff-default-rtdb.firebaseio.com/sent${myEmail.split('@')[0]}.json`,
         method: 'POST',
         headers: {
           'Content-Type':'application/json'

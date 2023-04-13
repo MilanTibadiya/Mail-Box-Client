@@ -15,7 +15,7 @@ const Header = () => {
         <>
         <Navbar bg="primary" variant="light">
         <Container>
-          <Navbar.Brand className="mx-4 text-white">Mail Box App</Navbar.Brand>
+          <Navbar.Brand className="mx-4 text-white">Mailbox App</Navbar.Brand>
           <Nav className="me-auto align-items-center">
             <NavLink to="/" className="mx-4 text-white">Home</NavLink>
             {/* <NavLink to="/sendmail" className="mx-4 text-white">Mail Box</NavLink> */}
