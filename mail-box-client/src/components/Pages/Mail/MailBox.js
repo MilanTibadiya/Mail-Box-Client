@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from 'draft-js';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { toast } from "react-toastify";
+import classes from './inbox.module.css';
 
 const MailBox = () => {
   const navigate = useNavigate();
@@ -77,8 +77,11 @@ const MailBox = () => {
       <h1 className="d-flex justify-content-center display-5 border-bottom p-2 border-1 border-dark">
         Send Mail
       </h1>
+      <div className={classes.menu_three_section}>
       <button className=' btn border-primary m-3 mx-5' onClick={()=>navigate('/inbox')}>Inbox</button>
       <button className=' btn border-primary m-3' onClick={()=>navigate('/sent')}>SENT</button>
+      </div>
+      
       <div style={{ margin: "11px 111px" }}>
         <label style={{ borderBottom: "1px solid black" }}>
           From: {myEmail}

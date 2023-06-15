@@ -5,6 +5,7 @@ import useHttp from "../../../hooks/use-http";
 import { useDispatch, useSelector } from "react-redux";
 import { mailAction } from "../../../store/MailSlicer";
 import {AiFillDelete } from 'react-icons/ai'
+import classes from './inbox.module.css';
 
 const SentMail = () => {
     const { sendRequest } = useHttp();
@@ -53,8 +54,10 @@ const SentMail = () => {
     return (
         <>
         <h1 className="d-flex justify-content-center display-5 border-bottom p-2 border-1 border-dark">Sent</h1>
+        <div className={classes.menu_three_section}> 
         <button className=' btn border-primary m-3 mx-5' onClick={()=>navigate('/sendmail')}>COMPOESE</button>
-        <button className=' btn border-primary m-3' onClick={()=>navigate('/inbox')}>Inbox</button>     
+        <button className=' btn border-primary m-3' onClick={()=>navigate('/inbox')}>INBOX</button>     
+        </div>
           <div className="mx-5">
             {sentmail?.map((email) => (
               <div  key={email.id} className='d-flex gap-3'>

@@ -4,8 +4,9 @@ import { mailAction } from "../../../store/MailSlicer";
 import { useNavigate } from "react-router-dom";
 import useHttp from "../../../hooks/use-http";
 
-import { RxDotFilled } from 'react-icons/rx'
-import {AiFillDelete } from 'react-icons/ai'
+import { RxDotFilled } from 'react-icons/rx';
+import {AiFillDelete } from 'react-icons/ai';
+import classes from './inbox.module.css';
 
 const Inbox = () => {
   const { sendRequest } = useHttp();
@@ -88,8 +89,14 @@ sum.forEach(element => {
     return (  
         <>
       <h1 className="d-flex justify-content-center display-5 border-bottom p-2 border-1 border-dark">Inbox</h1>
+      
+      <div className={classes.menu_three_section}>
       <button className=' btn border-primary m-3 mx-5' onClick={()=>navigate('/sendmail')}>COMPOESE</button>
-      <button className=' btn border-primary m-3' onClick={()=>navigate('/sent')}>SENT</button>     
+      <button className=' btn border-primary m-3' onClick={()=>navigate('/sent')}>SENT</button>        
+      {/* <button className=' btn border-primary m-3' onClick={()=>navigate('/inbox')}>INBOX</button>         */}
+
+      </div>
+
        <div className="mx-5 mt-3 mb-2"><span>recieved  ||</span> <span>   Inbox : {count} Unread </span></div>
         <div className="mx-5">
           {allMails?.map((email) => (
